@@ -18,6 +18,7 @@ interface Task {
   backgroundColor?: string;
   borderColor?: string;
   textColor?: string;
+  isNew? : boolean
 }
 
 interface Filters {
@@ -46,17 +47,17 @@ const DemoApp: React.FC = () => {
     return savedTasks
       ? JSON.parse(savedTasks)
       : [
-          {
-            id: crypto.randomUUID(),
-            title: "Meeting",
-            taskName: "Initial Meeting",
-            taskStatus: "To Do",
-            start: new Date().toISOString().split("T")[0],
-            display: "block",
-            backgroundColor: "#d4f5d4",
-            borderColor: "#2ecc71",
-            textColor: "#2c3e50",
-          },
+          // {
+          //   id: crypto.randomUUID(),
+          //   title: "Meeting",
+          //   taskName: "Initial Meeting",
+          //   taskStatus: "To Do",
+          //   start: new Date().toISOString().split("T")[0],
+          //   display: "block",
+          //   backgroundColor: "#d4f5d4",
+          //   borderColor: "#2ecc71",
+          //   textColor: "#2c3e50",
+          // },
         ];
   });
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
@@ -120,6 +121,7 @@ const DemoApp: React.FC = () => {
       start: selectInfo.startStr,
       end: selectInfo.endStr,
       display: "block",
+      isNew: true,
       backgroundColor: "#d4f5d4",
       borderColor: "#2ecc71",
       textColor: "#2c3e50",
@@ -135,7 +137,7 @@ const DemoApp: React.FC = () => {
     const task = {
       id: clickInfo.event.id,
       title: clickInfo.event.title,
-      taskName: clickInfo.event.extendedProps.taskName || clickInfo.event.title,
+      taskName: clickInfo.event.extendedProps.taskName ,
       taskStatus: clickInfo.event.extendedProps.taskStatus || "",
       start: clickInfo.event.startStr,
       end: clickInfo.event.endStr,
@@ -143,6 +145,7 @@ const DemoApp: React.FC = () => {
       backgroundColor: clickInfo.event.backgroundColor,
       borderColor: clickInfo.event.borderColor,
       textColor: clickInfo.event.textColor,
+      isNew: clickInfo.event.extendedProps.isNew
     };
     setEditTask(task);
     setIsModalOpen(true);
@@ -181,6 +184,7 @@ const DemoApp: React.FC = () => {
               backgroundColor: editTask.backgroundColor || "#d4f5d4",
               borderColor: editTask.borderColor || "#2ecc71",
               textColor: editTask.textColor || "#2c3e50",
+              isNew: editTask.isNew === true ? false : false
             }
           : evt
       )

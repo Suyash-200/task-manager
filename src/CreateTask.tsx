@@ -12,6 +12,7 @@ interface TaskDetails {
   backgroundColor?: string;
   borderColor?: string;
   textColor?: string;
+  isNew?: boolean
 }
 
 interface CreateTaskProps {
@@ -40,12 +41,14 @@ const CreateTask: React.FC<CreateTaskProps> = ({
     const { name, value } = e.target;
     setTaskDetails({ ...taskDetails, [name]: value });
   };
+  console.log(taskDetails);
+  
 
   return (
     <div className="swal-overlay">
       <div className="swal-container">
         <h2 className="swal-title">
-          {taskDetails.id && taskDetails.taskName ? "Edit Task" : "Create Task"}
+          { taskDetails.isNew  ? "Create Task" : "Edit Task"}
         </h2>
 
         <input
@@ -78,7 +81,7 @@ const CreateTask: React.FC<CreateTaskProps> = ({
             onClick={handleSave}
             disabled={!taskDetails.taskName || !taskDetails.taskStatus}
           >
-            {taskDetails.id && taskDetails.taskName ? "Update" : "Save"} Task
+            {taskDetails.isNew ? "Save" : "Update"} Task
           </button>
         </div>
       </div>
