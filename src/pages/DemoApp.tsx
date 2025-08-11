@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
 import type { DateSelectArg, EventClickArg, EventContentArg } from "@fullcalendar/core";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import CreateTask from "./CreateTask";
-import TaskFilters from "./TaskFilters";
+import CreateTask from "../components/CreateTask";
+import TaskFilters from "../components/TaskFilters";
+
 
 interface Task {
   id: string;
