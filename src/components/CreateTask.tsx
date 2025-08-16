@@ -41,7 +41,6 @@ const CreateTask: React.FC<CreateTaskProps> = ({
     const { name, value } = e.target;
     setTaskDetails({ ...taskDetails, [name]: value });
   };
-  console.log(taskDetails);
   
 
   return (
